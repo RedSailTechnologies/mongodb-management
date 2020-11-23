@@ -14,7 +14,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: redsailtechnologies/mongodb-management
+  IMAGE_NAME: api
 
 jobs:
   # Run tests.
