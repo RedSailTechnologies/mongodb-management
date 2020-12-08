@@ -57,6 +57,7 @@ namespace MongoDbManagement.API
         /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
             services.AddControllers();
         }
 
@@ -80,6 +81,7 @@ namespace MongoDbManagement.API
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/health");
                 endpoints.MapControllers();
             });
         }
