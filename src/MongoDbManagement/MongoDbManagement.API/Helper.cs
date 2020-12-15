@@ -46,6 +46,13 @@ namespace MongoDbManagement.API
 
             settings.Credential = new MongoCredential("SCRAM-SHA-1", identity, evidence);
 
+            if (!string.IsNullOrWhiteSpace(database.ReplicaSet))
+            {
+                settings.ReplicaSetName = database.ReplicaSet;
+            }
+
+            settings.MinConnectionPoolSize = 0;
+
             return new MongoClient(settings);
         }
     }

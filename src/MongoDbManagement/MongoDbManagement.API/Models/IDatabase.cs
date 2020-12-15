@@ -68,6 +68,14 @@ namespace MongoDbManagement.API.Models
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the replica set.
+        /// </summary>
+        /// <value>
+        /// The replica set.
+        /// </value>
+        public string ReplicaSet { get; set; }
+
+        /// <summary>
         /// Gets or sets the database name.
         /// </summary>
         /// <value>
