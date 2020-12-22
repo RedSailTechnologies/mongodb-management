@@ -151,3 +151,29 @@ By default, TLS will be enabled for the MongoConnection.  To disable, include an
     "CollectionName": "Brody"
 }
 ```
+
+## Replica Set
+If needed, include an element in the JSON body named `ReplicaSet` and see the value.  
+```
+{
+    "Host": "sample.url.com",
+    "Port": 27017,
+    "User": "user-name",
+    "Password": "password1",
+    "ReplicaSet": "globaldb"
+    "DatabaseName": "Jaws"
+}
+```
+
+## Application Name
+If needed, include an element in the JSON body named `ApplicationName` and see the value.  
+```
+{
+    "Host": "sample.url.com",
+    "Port": 27017,
+    "User": "user-name",
+    "Password": "password1",
+    "ApplicationName": "@my-azure-cosmos-name@"
+    "DatabaseName": "Jaws"
+}
+```
