@@ -57,10 +57,10 @@ namespace MongoDbManagement.API
                 settings.ApplicationName = database.ApplicationName;
             }
 
-            if (!string.IsNullOrWhiteSpace(database.MaxConnectionIdleTime))
+            if (!string.IsNullOrWhiteSpace(database.MaxConnectionIdleTimeStringOfMs))
             {
                 double ms;
-                if (Double.TryParse(database.MaxConnectionIdleTime, out ms))
+                if (Double.TryParse(database.MaxConnectionIdleTimeStringOfMs, out ms))
                 {
                     settings.MaxConnectionIdleTime = TimeSpan.FromMilliseconds(ms);
                 }

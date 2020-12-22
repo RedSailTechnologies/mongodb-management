@@ -85,12 +85,12 @@ namespace MongoDbManagement.API.Models
         public bool RetryWrites { get; set; }
 
         /// <summary>
-        /// Gets or sets the max connection idle time.
+        /// Gets or sets the max connection idle time string of ms.
         /// </summary>
         /// <value>
-        /// The max connection idle time.
+        /// The max connection idle time string of ms.
         /// </value>
-        public string MaxConnectionIdleTime { get; set; }
+        public string MaxConnectionIdleTimeStringOfMs { get; set; }
 
         /// <summary>
         /// Gets or sets the application name.

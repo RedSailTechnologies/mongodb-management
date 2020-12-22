@@ -139,7 +139,7 @@ Since a Collection is needed for a Database to be browsed, a simple Collection a
 All `POST` commands use the `GET` methods to ensure the objects have been inserted to the database before returning `201`.  The `GET` commands are there as a courtesy and are not necessary for typical use.
 
 ## TLS
-By default, TLS will be enabled for the MongoConnection.  To disable, include an element in the JSON body named `UseTls` and see the value to `false`.  
+By default, TLS will be enabled for the MongoConnection.  To disable, include an element in the JSON body named `UseTls` and set the value to `false`.  
 ```
 {
     "Host": "sample.url.com",
@@ -153,7 +153,7 @@ By default, TLS will be enabled for the MongoConnection.  To disable, include an
 ```
 
 ## Replica Set
-If needed, include an element in the JSON body named `ReplicaSet` and see the value.  
+If needed, include an element in the JSON body named `ReplicaSet` and set the value.  
 ```
 {
     "Host": "sample.url.com",
@@ -166,7 +166,7 @@ If needed, include an element in the JSON body named `ReplicaSet` and see the va
 ```
 
 ## Application Name
-If needed, include an element in the JSON body named `ApplicationName` and see the value.  
+If needed, include an element in the JSON body named `ApplicationName` and set the value.  
 ```
 {
     "Host": "sample.url.com",
@@ -174,6 +174,32 @@ If needed, include an element in the JSON body named `ApplicationName` and see t
     "User": "user-name",
     "Password": "password1",
     "ApplicationName": "@my-azure-cosmos-name@"
+    "DatabaseName": "Jaws"
+}
+```
+
+## Retry Writes
+By default, retry writes will be false.  If needed, include an element in the JSON body named `RetryWrites` and set the bool value to `true`.  
+```
+{
+    "Host": "sample.url.com",
+    "Port": 27017,
+    "User": "user-name",
+    "Password": "password1",
+    "RetryWrites": true
+    "DatabaseName": "Jaws"
+}
+```
+
+## Max Connection Idle Time (String of Milliseconds)
+If needed, include an element in the JSON body named `MaxConnectionIdleTimeStringOfMs` and set the value.  
+```
+{
+    "Host": "sample.url.com",
+    "Port": 27017,
+    "User": "user-name",
+    "Password": "password1",
+    "MaxConnectionIdleTimeStringOfMs": "120000"
     "DatabaseName": "Jaws"
 }
 ```
