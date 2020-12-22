@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System;
 using MongoDB.Driver;
 using MongoDbManagement.API.Models;
 
@@ -56,6 +57,16 @@ namespace MongoDbManagement.API
                 settings.ApplicationName = database.ApplicationName;
             }
 
+            if (!string.IsNullOrWhiteSpace(database.MaxConnectionIdleTime))
+            {
+                double ms;
+                if (Double.TryParse(database.MaxConnectionIdleTime, out ms))
+                {
+                    settings.MaxConnectionIdleTime = TimeSpan.FromMilliseconds(ms);
+                }
+            }
+
+            settings.RetryWrites = database.RetryWrites;
             settings.MinConnectionPoolSize = 0;
 
             return new MongoClient(settings);

@@ -77,6 +77,22 @@ namespace MongoDbManagement.API.Models
         public string ReplicaSet { get; set; }
 
         /// <summary>
+        /// Gets or sets the retry writes.
+        /// </summary>
+        /// <value>
+        /// The retry writes.
+        /// </value>
+        public bool RetryWrites { get; set; }
+
+        /// <summary>
+        /// Gets or sets the max connection idle time.
+        /// </summary>
+        /// <value>
+        /// The max connection idle time.
+        /// </value>
+        public string MaxConnectionIdleTime { get; set; }
+
+        /// <summary>
         /// Gets or sets the application name.
         /// </summary>
         /// <value>
