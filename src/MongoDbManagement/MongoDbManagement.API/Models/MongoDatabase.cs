@@ -77,6 +77,14 @@ namespace MongoDbManagement.API.Models
         public string ReplicaSet { get; set; }
 
         /// <summary>
+        /// Gets or sets the application name.
+        /// </summary>
+        /// <value>
+        /// The application name.
+        /// </value>
+        public string ApplicationName { get; set; }
+
+        /// <summary>
         /// Gets or sets the database name.
         /// </summary>
         /// <value>

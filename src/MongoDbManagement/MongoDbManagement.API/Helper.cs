@@ -51,6 +51,11 @@ namespace MongoDbManagement.API
                 settings.ReplicaSetName = database.ReplicaSet;
             }
 
+            if (!string.IsNullOrWhiteSpace(database.ApplicationName))
+            {
+                settings.ApplicationName = database.ApplicationName;
+            }
+
             settings.MinConnectionPoolSize = 0;
 
             return new MongoClient(settings);
