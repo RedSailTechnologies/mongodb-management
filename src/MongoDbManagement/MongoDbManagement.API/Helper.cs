@@ -42,7 +42,7 @@ namespace MongoDbManagement.API
             settings.UseTls = database.UseTls;
             settings.RetryWrites = false;
 
-            MongoIdentity identity = new MongoInternalIdentity(database.DatabaseName, database.User);
+            MongoIdentity identity = new MongoInternalIdentity(database.AuthDatabaseName ?? database.DatabaseName, database.User);
             MongoIdentityEvidence evidence = new PasswordEvidence(database.Password);
 
             settings.Credential = new MongoCredential("SCRAM-SHA-1", identity, evidence);
