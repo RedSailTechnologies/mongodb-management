@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDb.Bson" Version="2.11.6" />
-    <PackageReference Include="MongoDb.Driver" Version="2.11.6" />
+    <PackageReference Include="MongoDb.Bson" Version="2.12.3" />
+    <PackageReference Include="MongoDb.Driver" Version="2.12.3" />
   </ItemGroup>
 
 </Project>
