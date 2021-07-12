@@ -125,6 +125,39 @@ JSON Body:
 }
 ```
 
+## Copy Database
+POST: https://localhost:5001/copydatabase  
+Authentication: Disabled  
+JSON Body:
+```
+{
+    "SourceDatabase":{
+        "Host":"source.mongo.cosmos.azure.com",
+        "Port":10255,
+        "UseTls":true,
+        "User":"source",
+        "Password":"source_password",
+        "AuthDatabaseName":"mydb",
+        "ReplicaSet":"globaldb",
+        "ApplicationName":"@source@",
+        "MaxConnectionIdleTimeStringOfMs":"120000",
+        "DatabaseName":"mydb"
+    },
+    "TargetDatabase":{
+        "Host":"target.mongo.cosmos.azure.com",
+        "Port":10255,
+        "UseTls":true,
+        "User":"target",
+        "Password":"target_password",
+        "AuthDatabaseName":"mydb",
+        "ReplicaSet":"globaldb",
+        "ApplicationName":"@target@",
+        "MaxConnectionIdleTimeStringOfMs":"120000",
+        "DatabaseName":"mydb"
+    }
+}
+```
+
 # Considerations
 
 ## Creating a Basic Database
