@@ -19,5 +19,6 @@ RUN dotnet publish -c Release -o /app/publish --no-restore --no-build
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS release
 WORKDIR /app
 COPY --from=publish /app/publish ./
+RUN addgroup -g 10001 -S user && adduser -u 10001 -S user -G user
 USER user
 ENTRYPOINT [ "dotnet", "MongoDbManagement.API.dll" ]
