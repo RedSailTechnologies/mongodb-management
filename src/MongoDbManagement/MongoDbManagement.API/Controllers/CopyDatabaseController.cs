@@ -81,14 +81,17 @@ namespace MongoDbManagement.API.Controllers
 
                     targetDatabase.CreateCollection(sourceCollectionName);
                     var targetCollection = targetDatabase.GetCollection<BsonDocument>(sourceCollectionName);
-                    
+
                     // Slow things down because Azure Cosmos default RU
                     var size = sourceDocuments.Count;
+                    Console.WriteLine($"Total {sourceCollectionName} documents: {size}");
                     for (int i = 0; i < size; i = i + 100)
                     {
-                        var batch = sourceDocuments.Skip(i).Take(100);
+                        var batch = sourceDocuments.Skip(i).Take(100).ToList();
+                        Console.WriteLine($"Inserting documents {i - 99} to {i} (batch size {batch.Count})...");
                         targetCollection.InsertMany(batch);
-                        System.Threading.Thread.Sleep(2000);
+                        Console.WriteLine($"Successfully inserted {batch.Count} documents {i - 99} to {i}");
+                        System.Threading.Thread.Sleep(10000);
                     }
 
                     var sourceIndexes = sourceCollection.Indexes.List().ToList();
