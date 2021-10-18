@@ -52,6 +52,14 @@ namespace MongoDbManagement.API.Models
         public bool UseTls { get; set; }
 
         /// <summary>
+        /// Gets or sets the use scram sha256.
+        /// </summary>
+        /// <value>
+        /// The use scram sha256.
+        /// </value>
+        public bool UseScramSha256 { get; set; }
+
+        /// <summary>
         /// Gets or sets the user.
         /// </summary>
         /// <value>

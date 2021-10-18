@@ -45,7 +45,9 @@ namespace MongoDbManagement.API
             MongoIdentity identity = new MongoInternalIdentity(database.AuthDatabaseName ?? database.DatabaseName, database.User);
             MongoIdentityEvidence evidence = new PasswordEvidence(database.Password);
 
-            settings.Credential = new MongoCredential("SCRAM-SHA-1", identity, evidence);
+            var scramShaType = database.UseScramSha256 ? "SCRAM-SHA-256" : "SCRAM-SHA-1";
+
+            settings.Credential = new MongoCredential(scramShaType, identity, evidence);
 
             if (!string.IsNullOrWhiteSpace(database.ReplicaSet))
             {
