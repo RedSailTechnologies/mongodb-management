@@ -42,5 +42,13 @@ namespace MongoDbManagement.API.Models
         /// The target database.
         /// </value>
         public MongoDatabase TargetDatabase { get; set; }
+
+        /// <summary>
+        /// Gets or sets if the target is azure.
+        /// </summary>
+        /// <value>
+        /// The target is azure.
+        /// </value>
+        public bool TargetIsAzure { get; set; }
     }
 }

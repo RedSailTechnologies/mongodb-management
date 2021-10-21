@@ -154,7 +154,8 @@ JSON Body:
         "ApplicationName":"@target@",
         "MaxConnectionIdleTimeStringOfMs":"120000",
         "DatabaseName":"mydb"
-    }
+    },
+    "TargetIsAzure": true
 }
 ```
 

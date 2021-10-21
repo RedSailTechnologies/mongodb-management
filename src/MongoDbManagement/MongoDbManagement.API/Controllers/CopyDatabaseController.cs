@@ -79,11 +79,19 @@ namespace MongoDbManagement.API.Controllers
                     var sourceCollection = sourceDatabase.GetCollection<BsonDocument>(sourceCollectionName);
                     var sourceDocuments = sourceCollection.Find(_ => true).ToList();
 
-                    targetDatabase.CreateCollection(sourceCollectionName);
+                    if (mongoDatabaseCopy.TargetIsAzure)
+                    {
+                        targetDatabase.CreateCollection(sourceCollectionName);
+                    }
+
                     var targetCollection = targetDatabase.GetCollection<BsonDocument>(sourceCollectionName);
 
-                    // Slow things down because Azure Cosmos default RU
-                    var batchSize = 10;
+                    var batchSize = 100;
+                    if (mongoDatabaseCopy.TargetIsAzure)
+                    {
+                        // Slow things down because Azure Cosmos default RU
+                        batchSize = 10;
+                    }
                     var size = sourceDocuments.Count;
                     Console.WriteLine($"Total {sourceCollectionName} documents: {size}");
                     for (int i = 0; i < size; i = i + batchSize)
@@ -92,7 +100,10 @@ namespace MongoDbManagement.API.Controllers
                         Console.WriteLine($"Inserting documents {i + 1} to {i + batch.Count}...");
                         targetCollection.InsertMany(batch);
                         Console.WriteLine($"Successfully inserted {batch.Count} documents {i + 1} to {i + batch.Count}");
-                        System.Threading.Thread.Sleep(2000);
+                        if (mongoDatabaseCopy.TargetIsAzure)
+                        {
+                            System.Threading.Thread.Sleep(2000);  
+                        }
                     }
 
                     var sourceIndexes = sourceCollection.Indexes.List().ToList();
@@ -122,10 +133,10 @@ namespace MongoDbManagement.API.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                return StatusCodes.Status400BadRequest;
+                return BadRequest();
             }
 
-            return StatusCodes.Status201Created;
+            return Ok();
         }
     }
 }
