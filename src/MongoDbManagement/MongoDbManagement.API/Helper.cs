@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using MongoDB.Driver;
 using MongoDbManagement.API.Models;
 
@@ -38,7 +39,20 @@ namespace MongoDbManagement.API
         public static MongoClient GetMongoClient(IDatabase database)
         {
             MongoClientSettings settings = new MongoClientSettings();
-            settings.Server = new MongoServerAddress(database.Host, database.Port);
+            var hosts = database.Host.Split(',');
+            if (hosts.Length == 1)
+            {
+                settings.Server = new MongoServerAddress(database.Host, database.Port);
+            }
+            else
+            {
+                var serverList = new List<MongoServerAddress>();
+                foreach (var host in hosts)
+                {
+                    serverList.Add(new MongoServerAddress(host, database.Port));
+                }
+                settings.Servers = serverList;
+            }
             settings.UseTls = database.UseTls;
             settings.RetryWrites = false;
 
