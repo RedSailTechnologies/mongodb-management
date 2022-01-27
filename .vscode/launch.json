@@ -10,9 +10,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/MongoDbManagement/MongoDbManagement.API/bin/Debug/netcoreapp3.1/MongoDbManagement.API.dll",
+            "program": "${workspaceFolder}/src/MongoDbManagement.API/bin/Debug/netcoreapp3.1/MongoDbManagement.API.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/MongoDbManagement/MongoDbManagement.API",
+            "cwd": "${workspaceFolder}/src/MongoDbManagement.API",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
