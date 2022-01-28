@@ -33,6 +33,16 @@ namespace MongoDbManagement.API
     public static class Helper
     {
         /// <summary>
+        /// Enables swagger.
+        /// </summary>
+        /// <returns></returns>
+        public static bool EnableSwagger()
+        {
+            bool.TryParse(Environment.GetEnvironmentVariable("ENABLE_SWAGGER"), out bool enableSwagger);
+            return enableSwagger;
+        }
+
+        /// <summary>
         /// Gets mongo client.
         /// </summary>
         /// <param name="database">The database.</param>

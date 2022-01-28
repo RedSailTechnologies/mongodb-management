@@ -25,6 +25,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using MongoDbManagement.API;
+using Prometheus;
 
 namespace MongoDbManagement.API
 {
@@ -59,6 +62,10 @@ namespace MongoDbManagement.API
         {
             services.AddHealthChecks();
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MongoDBManagement", Version = "v1" });
+            });
         }
 
         /// <summary>
@@ -68,20 +75,25 @@ namespace MongoDbManagement.API
         /// <param name="env">The env.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsDevelopment() || Helper.EnableSwagger())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MongoDBManagement v1"));
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseHttpMetrics();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/health");
+                endpoints.MapMetrics("/metrics");
                 endpoints.MapControllers();
             });
         }
