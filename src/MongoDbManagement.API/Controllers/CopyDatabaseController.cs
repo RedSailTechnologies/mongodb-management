@@ -73,6 +73,8 @@ namespace MongoDbManagement.API.Controllers
                 MongoClient targetClient = Helper.GetMongoClient(mongoDatabaseCopy.TargetDatabase);
                 var targetDatabase = targetClient.GetDatabase(mongoDatabaseCopy.TargetDatabase.DatabaseName);
 
+                Console.WriteLine($"Copying from {mongoDatabaseCopy.SourceDatabase.Host} to {mongoDatabaseCopy.TargetDatabase.Host}...");
+
                 var sourceCollectionNames = sourceDatabase.ListCollectionNames().ToList();
                 foreach (var sourceCollectionName in sourceCollectionNames)
                 {
@@ -102,7 +104,7 @@ namespace MongoDbManagement.API.Controllers
                         Console.WriteLine($"Successfully inserted {batch.Count} documents {i + 1} to {i + batch.Count}");
                         if (mongoDatabaseCopy.TargetIsAzure)
                         {
-                            System.Threading.Thread.Sleep(2000);  
+                            System.Threading.Thread.Sleep(2000);
                         }
                     }
 
